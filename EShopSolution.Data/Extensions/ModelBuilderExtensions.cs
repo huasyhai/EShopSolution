@@ -191,7 +191,8 @@ namespace EShopSolution.Data.Extensions
                 {
                     RoleId = roleId,
                     UserId = adminId
-                });
+                }
+            );
         }
     }
 }
