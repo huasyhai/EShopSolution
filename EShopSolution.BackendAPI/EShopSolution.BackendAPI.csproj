@@ -1,14 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EShopSolution.Application\EShopSolution.Application.csproj" />
     <ProjectReference Include="..\EShopSolution.Data\EShopSolution.Data.csproj" />
     <ProjectReference Include="..\EShopSolution.Ultilities\EShopSolution.Ultilities.csproj" />
     <ProjectReference Include="..\EShopSolution.ViewModels\EShopSolution.ViewModels.csproj" />
