@@ -27,8 +27,6 @@ namespace EShopSolution.ViewModels.Catalog.Products
 
         public string LanguageId { get; set; }
 
-        public DateTime DateCreated { get; set; }
-
         public IFormFile ThumbnailImage { get; set; }
     }
 }

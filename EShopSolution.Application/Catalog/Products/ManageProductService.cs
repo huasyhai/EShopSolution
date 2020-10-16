@@ -96,7 +96,9 @@ namespace EShopSolution.Application.Catalog.Products
 
             _context.Products.Add(product);
 
-            return await _context.SaveChangesAsync(); 
+            await _context.SaveChangesAsync();
+
+            return product.Id;
         }
 
         public async Task<int> Delete(int productId)
@@ -163,6 +165,35 @@ namespace EShopSolution.Application.Catalog.Products
 
             return pagedResult;
 
+        }
+
+        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+
+            var productTransaltion = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
+
+            if (product == null || productTransaltion == null)
+                throw new EShopException($"Cannot find a product with id: {productId}");
+
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = productTransaltion != null ? productTransaltion.Description : null,
+                LanguageId = productTransaltion != null ? productTransaltion.LanguageId : null,
+                Details = productTransaltion != null ? productTransaltion.Details : null,
+                Name = productTransaltion != null ? productTransaltion.Name : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTransaltion != null ? productTransaltion.SeoAlias : null,
+                SeoTitle = productTransaltion != null ? productTransaltion.SeoTitle : null,
+                SeoDescription = productTransaltion != null ? productTransaltion.SeoDescription : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+            };
+
+            return productViewModel;
         }
 
         public async Task<List<ProductImageViewModel>> GetListImage(int productId)
