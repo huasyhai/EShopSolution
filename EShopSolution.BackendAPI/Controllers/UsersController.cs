@@ -34,7 +34,7 @@ namespace EShopSolution.BackendAPI.Controllers
                 return BadRequest("UserName or Password is incorrect");
             }
 
-            return Ok(new { Token = resultToken });
+            return Ok( resultToken );
         }
 
         [HttpPost("Register")]
