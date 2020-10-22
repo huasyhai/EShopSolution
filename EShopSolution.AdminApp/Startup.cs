@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EShopSolution.AdminApp.Services;
+using EShopSolution.ViewModels.System.Users;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,7 +26,20 @@ namespace EShopSolution.AdminApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddHttpClient();
+
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
+            services.AddTransient<IUserApiClient, UserApiClient>();
+
+            IMvcBuilder builder = services.AddRazorPages();
+            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            #if DEBUG
+                 if(environment == Environments.Development)
+                 {
+                    builder.AddRazorRuntimeCompilation();
+                 }
+            #endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +51,7 @@ namespace EShopSolution.AdminApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/HomeAdmin/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -50,7 +66,7 @@ namespace EShopSolution.AdminApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=HomeAdmin}/{action=Index}/{id?}");
             });
         }
     }
