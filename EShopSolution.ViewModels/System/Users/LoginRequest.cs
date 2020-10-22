@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EShopSolution.ViewModels.System.Users
+﻿namespace EShopSolution.ViewModels.System.Users
 {
     public class LoginRequest
     {

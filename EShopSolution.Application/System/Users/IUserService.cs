@@ -1,7 +1,4 @@
 ﻿using EShopSolution.ViewModels.System.Users;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EShopSolution.Application.System.Users
