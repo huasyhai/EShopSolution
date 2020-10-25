@@ -46,9 +46,7 @@ namespace EShopSolution.BackendAPI
 
             //declare DI
 
-            services.AddTransient<IPublicProductService, PublicProductService>();
-
-            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IProductService, ProductService>();
 
             services.AddTransient<IStorageService, FileStorageService>();
 
