@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using EShopSolution.AdminApp.Services;
 using EShopSolution.ViewModels.System.Users;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,27 +26,37 @@ namespace EShopSolution.AdminApp
 
             services.AddHttpClient();
 
+            // add authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option => {
-                option.LoginPath = "/User/Login";
+                option.LoginPath = "/Login/Index";
                 option.AccessDeniedPath = "/Account/Forbidden/";
             });
+            //
 
+            // add fluent validation
             services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+            //
 
+            //add session
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);//You can set Time   
             });
+            //
 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
+            // k cần build lại để khi muốn refresh code
             IMvcBuilder builder = services.AddRazorPages();
+
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
             #if DEBUG
                  if(environment == Environments.Development)
                  {
                     builder.AddRazorRuntimeCompilation();
                  }
             #endif
+            //
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
