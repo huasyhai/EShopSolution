@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EShopSolution.AdminApp.Controllers
 {
-    [Authorize]
-    public class HomeAdminController : Controller
+    public class HomeAdminController : BaseController
     {
         private readonly ILogger<HomeAdminController> _logger;
 
