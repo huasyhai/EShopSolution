@@ -44,7 +44,9 @@ namespace EShopSolution.AdminApp
             });
             //
 
+            // add HttpContextAccessor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //
 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
