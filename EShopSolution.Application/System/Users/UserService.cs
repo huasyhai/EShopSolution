@@ -76,6 +76,7 @@ namespace EShopSolution.Application.System.Users
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 FirstName = user.FirstName,
+                UserName = user.UserName,
                 Dob = user.Dob,
                 Id = user.Id,
                 LastName = user.LastName
@@ -111,7 +112,9 @@ namespace EShopSolution.Application.System.Users
             //4. Select and projection
             var pagedResult = new PagedResult<UserVm>()
             {
-                TotalRecord = TotalRow,
+                TotalRecords = TotalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
 
