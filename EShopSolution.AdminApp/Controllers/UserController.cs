@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using EShopSolution.AdminApp.Services;
+using EShopSolution.ViewModels.Common;
 using EShopSolution.ViewModels.System.Users;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,13 +14,15 @@ namespace EShopSolution.AdminApp.Controllers
     public class UserController : BaseController
     {
         private readonly IUserApiClient _userApiClient;
+        private readonly IRoleClientApi _roleApiClient;
         private readonly IConfiguration _configuration;
-        public UserController(IUserApiClient userApiClient, IConfiguration configuration)
+        public UserController(IUserApiClient userApiClient, IRoleClientApi roleApiClient, IConfiguration configuration)
         {
             _userApiClient = userApiClient;
+            _roleApiClient = roleApiClient;
             _configuration = configuration;
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 1)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
 
             var request = new GetUserPagingRequest()
@@ -139,6 +142,57 @@ namespace EShopSolution.AdminApp.Controllers
             HttpContext.Session.Remove("Token");
             return RedirectToAction("Index", "Login");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> RoleAssign(Guid id)
+        {
+            var roleAssignRequest = await GetRoleAssignRequest(id);
+
+           return View(roleAssignRequest);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoleAssign(RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _userApiClient.RoleAssign(request.Id, request);
+
+
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Gán quyền thành công";
+
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", result.Message);
+
+            var roleAssignRequest = await GetRoleAssignRequest(request.Id);
+            return View(request);
+        }
+
+
+        private async Task<RoleAssignRequest> GetRoleAssignRequest(Guid id)
+        {
+            var userObj = await _userApiClient.GetById(id);
+
+            var roleObj = await _roleApiClient.GetAll();
+
+            var roleAssignRequest = new RoleAssignRequest();
+
+            foreach (var role in roleObj.ResultObject)
+            {
+                roleAssignRequest.Roles.Add(new SelectItem()
+                {
+                    Id = role.Id.ToString(),
+                    Name = role.Name,
+                    Selected = userObj.ResultObject.Roles.Contains(role.Name)
+                });
+            }
+
+            return roleAssignRequest;
+        } 
 
     }
 }
