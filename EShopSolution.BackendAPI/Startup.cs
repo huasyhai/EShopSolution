@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation.AspNetCore;
 using EShopSolution.ViewModels.System.Users;
+using EShopSolution.Application.System.Roles;
 
 namespace EShopSolution.BackendAPI
 {
@@ -52,6 +53,9 @@ namespace EShopSolution.BackendAPI
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 
             services.AddTransient<IUserService, UserService>();
+
+            services.AddTransient<IRoleService, RoleService>();
+
 
             //
 
