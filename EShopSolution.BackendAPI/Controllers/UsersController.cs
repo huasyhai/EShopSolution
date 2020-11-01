@@ -29,7 +29,7 @@ namespace EShopSolution.BackendAPI.Controllers
 
             if(String.IsNullOrEmpty(result.ResultObject))
             {
-                return BadRequest("UserName or Password is incorrect");
+                return BadRequest(result);
             }
 
             return Ok( result );
