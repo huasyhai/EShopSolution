@@ -18,6 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 using FluentValidation.AspNetCore;
 using EShopSolution.ViewModels.System.Users;
 using EShopSolution.Application.System.Roles;
+using EShopSolution.Application.System.Languages;
 
 namespace EShopSolution.BackendAPI
 {
@@ -56,6 +57,7 @@ namespace EShopSolution.BackendAPI
 
             services.AddTransient<IRoleService, RoleService>();
 
+            services.AddTransient<ILanguageService, LanguageService>();
 
             //
 

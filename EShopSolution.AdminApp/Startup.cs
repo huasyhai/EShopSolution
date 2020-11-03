@@ -52,6 +52,8 @@ namespace EShopSolution.AdminApp
 
             services.AddTransient<IRoleClientApi, RoleClientApi>();
 
+            services.AddTransient<ILanguageClientApi, LanguageClientApi>();
+
 
             // k cần build lại để khi muốn refresh code
             IMvcBuilder builder = services.AddRazorPages();
