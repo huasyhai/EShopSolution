@@ -1,4 +1,5 @@
-﻿using EShopSolution.ViewModels.System.Roles;
+﻿using EShopSolution.ViewModels.Common;
+using EShopSolution.ViewModels.System.Roles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,6 @@ namespace EShopSolution.Application.System.Roles
 {
     public interface IRoleService
     {
-        Task<List<RoleVm>> GetAll();
+        Task<ApiResult<List<RoleVm>>> GetAll();
     }
 }
