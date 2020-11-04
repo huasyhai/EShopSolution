@@ -50,9 +50,12 @@ namespace EShopSolution.AdminApp
 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
-            services.AddTransient<IRoleClientApi, RoleClientApi>();
+            services.AddTransient<IRoleApiClient, RoleApiClient>();
 
-            services.AddTransient<ILanguageClientApi, LanguageClientApi>();
+            services.AddTransient<ILanguageApiClient, LanguageApiClient>();
+
+            services.AddTransient<IProductApiClient, ProductApiClient>();
+
 
 
             // k cần build lại để khi muốn refresh code

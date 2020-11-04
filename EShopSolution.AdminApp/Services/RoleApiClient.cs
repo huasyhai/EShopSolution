@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace EShopSolution.AdminApp.Services
 {
-    public class RoleClientApi : BaseClientApi, IRoleClientApi
+    public class RoleApiClient : BaseApiClient, IRoleApiClient
     {
 
-        public RoleClientApi(IHttpClientFactory httpClientFactory,
+        public RoleApiClient(IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor) : base(httpClientFactory, configuration, httpContextAccessor )
         {

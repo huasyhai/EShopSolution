@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EShopSolution.AdminApp.Services
 {
-    public interface IRoleClientApi
+    public interface IRoleApiClient
     {
         Task<ApiResult<List<RoleVm>>> GetAll();
     }
