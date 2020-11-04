@@ -59,6 +59,8 @@ namespace EShopSolution.BackendAPI
 
             services.AddTransient<ILanguageService, LanguageService>();
 
+
+
             //
 
             services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());

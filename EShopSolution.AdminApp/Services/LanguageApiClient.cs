@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace EShopSolution.AdminApp.Services
 {
-    public class LanguageClientApi : BaseClientApi, ILanguageClientApi
+    public class LanguageApiClient : BaseApiClient, ILanguageApiClient
     {
-        public LanguageClientApi(IHttpClientFactory httpClientFactory,
+        public LanguageApiClient(IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor) : base(httpClientFactory, configuration, httpContextAccessor)
         {

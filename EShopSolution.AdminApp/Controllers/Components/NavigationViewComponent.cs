@@ -9,9 +9,9 @@ namespace EShopSolution.AdminApp.Controllers.Components
 {
     public class NavigationViewComponent : ViewComponent
     {
-        private readonly ILanguageClientApi _languageClientApi;
+        private readonly ILanguageApiClient _languageClientApi;
 
-        public NavigationViewComponent(ILanguageClientApi languageClientApi)
+        public NavigationViewComponent(ILanguageApiClient languageClientApi)
         {
             _languageClientApi = languageClientApi;
         }
