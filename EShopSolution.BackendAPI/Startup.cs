@@ -19,6 +19,7 @@ using FluentValidation.AspNetCore;
 using EShopSolution.ViewModels.System.Users;
 using EShopSolution.Application.System.Roles;
 using EShopSolution.Application.System.Languages;
+using EShopSolution.Application.Catalog.Categories;
 
 namespace EShopSolution.BackendAPI
 {
@@ -44,6 +45,8 @@ namespace EShopSolution.BackendAPI
             //declare DI
 
             services.AddTransient<IProductService, ProductService>();
+
+            services.AddTransient<ICategoryService, CategoryService>();
 
             services.AddTransient<IStorageService, FileStorageService>();
 

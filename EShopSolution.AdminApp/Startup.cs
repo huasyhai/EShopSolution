@@ -56,7 +56,7 @@ namespace EShopSolution.AdminApp
 
             services.AddTransient<IProductApiClient, ProductApiClient>();
 
-
+            services.AddTransient<ICategoryApiClient, CategoryApiClient>();
 
             // k cần build lại để khi muốn refresh code
             IMvcBuilder builder = services.AddRazorPages();
