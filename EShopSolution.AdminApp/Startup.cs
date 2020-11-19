@@ -1,5 +1,5 @@
 ﻿using System;
-using EShopSolution.AdminApp.Services;
+using EShopSolution.ApiIntegration;
 using EShopSolution.ViewModels.System.Users;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
