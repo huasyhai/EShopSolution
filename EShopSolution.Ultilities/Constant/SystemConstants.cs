@@ -12,5 +12,10 @@
 
             public const string BaseAddress = "BaseAddress";
         }
+
+        public class ProductSetting
+        {
+            public const int NumberOfFeaturedProducts = 4;
+        }
     }
 }

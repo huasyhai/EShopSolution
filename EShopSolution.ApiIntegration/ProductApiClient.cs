@@ -97,6 +97,13 @@ namespace EShopSolution.ApiIntegration
             return data;
         }
 
+        public async Task<List<ProductVm>> GetFeaturedProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/featured/{languageId}/{take}");
+
+            return data;
+        }   
+
         public async Task<PagedResult<ProductVm>> GetPagings(GetManageProductPagingRequest request)
         {
 

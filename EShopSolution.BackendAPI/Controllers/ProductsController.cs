@@ -28,6 +28,14 @@ namespace EShopSolution.BackendAPI.Controllers
             return Ok(product);
         }
 
+        [HttpGet("featured/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFeaturedProducts(string languageId, int take)
+        {
+            var products = await _productService.GetFeaturedProducts(languageId, take);
+
+            return Ok(products);
+        }
 
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging( [FromQuery] GetManageProductPagingRequest request)
