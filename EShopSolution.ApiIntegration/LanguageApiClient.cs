@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace EShopSolution.AdminApp.Services
+namespace EShopSolution.ApiIntegration
 {
     public class LanguageApiClient : BaseApiClient, ILanguageApiClient
     {

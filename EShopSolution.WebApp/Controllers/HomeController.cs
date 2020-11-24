@@ -9,24 +9,36 @@ using EShopSolution.WebApp.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
 using LazZiya.ExpressLocalization;
+using EShopSolution.ApiIntegration;
+using System.Globalization;
+using EShopSolution.Ultilities.Constant;
 
 namespace EShopSolution.WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ISharedCultureLocalizer _loc;
-
-        public HomeController(ILogger<HomeController> logger, ISharedCultureLocalizer loc)
+        private readonly ISlideApiClient _slideApiClient;
+        private readonly IProductApiClient _productApiClient;
+        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, IProductApiClient productApiClient)
         {
             _logger = logger;
-            _loc = loc;
+            _slideApiClient = slideApiClient;
+            _productApiClient = productApiClient;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var msg = _loc.GetLocalizedString("Vietnamese");
-            return View();
+            var culture = CultureInfo.CurrentCulture.Name;
+
+            var viewModel = new HomeViewModel
+            {
+                Slides = await _slideApiClient.GetAll(),
+                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSetting.NumberOfFeaturedProducts),
+                LatestProducts = await _productApiClient.GetLatestProducts(culture, SystemConstants.ProductSetting.NumberOfLatestProducts)
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

@@ -1,4 +1,5 @@
-﻿using EShopSolution.ViewModels.Catalog.Categories;
+﻿using EShopSolution.ApiIntegration;
+using EShopSolution.ViewModels.Catalog.Categories;
 using EShopSolution.ViewModels.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace EShopSolution.AdminApp.Services
+namespace EShopSolution.ApiIntegration
 {
     public class CategoryApiClient : BaseApiClient, ICategoryApiClient
     {
@@ -21,7 +22,7 @@ namespace EShopSolution.AdminApp.Services
         }
         public async Task<List<CategoryVm>> GetAll(string languageId)
         {
-            return await GetListAsync<CategoryVm>($"/api/categories?languageId=" + languageId );
+            return await GetListAsync<CategoryVm>($"/api/categories?languageId=" + languageId);
         }
     }
 }

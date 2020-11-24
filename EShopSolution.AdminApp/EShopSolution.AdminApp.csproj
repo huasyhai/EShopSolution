@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EShopSolution.ApiIntegration\EShopSolution.ApiIntegration.csproj" />
     <ProjectReference Include="..\EShopSolution.BackendAPI\EShopSolution.BackendAPI.csproj" />
     <ProjectReference Include="..\EShopSolution.Ultilities\EShopSolution.Ultilities.csproj" />
     <ProjectReference Include="..\EShopSolution.ViewModels\EShopSolution.ViewModels.csproj" />

@@ -20,6 +20,7 @@ using EShopSolution.ViewModels.System.Users;
 using EShopSolution.Application.System.Roles;
 using EShopSolution.Application.System.Languages;
 using EShopSolution.Application.Catalog.Categories;
+using EShopSolution.Application.Ultilities.Slides;
 
 namespace EShopSolution.BackendAPI
 {
@@ -62,6 +63,7 @@ namespace EShopSolution.BackendAPI
 
             services.AddTransient<ILanguageService, LanguageService>();
 
+            services.AddTransient<ISlideService, SlideService>();
 
 
             //

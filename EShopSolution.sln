@@ -26,7 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Host", "3. Host", "{D90E8053-4458-4427-9360-9A831722F312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopSolution.AdminApp", "EShopSolution.AdminApp\EShopSolution.AdminApp.csproj", "{7B8C276A-F171-453F-81CC-8F619CA6F5FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShopSolution.AdminApp", "EShopSolution.AdminApp\EShopSolution.AdminApp.csproj", "{7B8C276A-F171-453F-81CC-8F619CA6F5FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EShopSolution.ApiIntegration", "EShopSolution.ApiIntegration\EShopSolution.ApiIntegration.csproj", "{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{7B8C276A-F171-453F-81CC-8F619CA6F5FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8C276A-F171-453F-81CC-8F619CA6F5FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8C276A-F171-453F-81CC-8F619CA6F5FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{032C391C-650B-4C3C-ACBD-2D10C553DCDD} = {6FB5AFFB-2D8A-4C34-9370-A0338253036E}
 		{55A1FE41-81B0-4BAA-ACCE-41405BB164DC} = {D90E8053-4458-4427-9360-9A831722F312}
 		{7B8C276A-F171-453F-81CC-8F619CA6F5FE} = {D90E8053-4458-4427-9360-9A831722F312}
+		{A1FB4701-E3E9-46C4-83D0-3C9E1C07257E} = {D90E8053-4458-4427-9360-9A831722F312}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D2E5169-21FB-440B-B54D-1D32A15EF0DB}
