@@ -102,7 +102,14 @@ namespace EShopSolution.ApiIntegration
             var data = await GetListAsync<ProductVm>($"/api/products/featured/{languageId}/{take}");
 
             return data;
-        }   
+        }
+
+        public async Task<List<ProductVm>> GetLatestProducts(string languageId, int take)
+        {
+            var data = await GetListAsync<ProductVm>($"/api/products/latest/{languageId}/{take}");
+
+            return data;
+        }
 
         public async Task<PagedResult<ProductVm>> GetPagings(GetManageProductPagingRequest request)
         {

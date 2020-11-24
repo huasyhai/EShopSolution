@@ -31,12 +31,11 @@ namespace EShopSolution.WebApp.Controllers
         {
             var culture = CultureInfo.CurrentCulture.Name;
 
-
-
             var viewModel = new HomeViewModel
             {
                 Slides = await _slideApiClient.GetAll(),
-                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSetting.NumberOfFeaturedProducts)
+                FeaturedProducts = await _productApiClient.GetFeaturedProducts(culture, SystemConstants.ProductSetting.NumberOfFeaturedProducts),
+                LatestProducts = await _productApiClient.GetLatestProducts(culture, SystemConstants.ProductSetting.NumberOfLatestProducts)
             };
 
             return View(viewModel);

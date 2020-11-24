@@ -16,6 +16,7 @@
         public class ProductSetting
         {
             public const int NumberOfFeaturedProducts = 4;
+            public const int NumberOfLatestProducts = 6;
         }
     }
 }

@@ -37,6 +37,15 @@ namespace EShopSolution.BackendAPI.Controllers
             return Ok(products);
         }
 
+        [HttpGet("latest/{languageId}/{take}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetLatestProducts(string languageId, int take)
+        {
+            var products = await _productService.GetLatestProducts(languageId, take);
+
+            return Ok(products);
+        }
+
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging( [FromQuery] GetManageProductPagingRequest request)
         {
