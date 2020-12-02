@@ -90,6 +90,42 @@ namespace EShopSolution.ApiIntegration
 
         }
 
+        public async Task<bool> UpdateProduct(ProductUpdateRequest request)
+        {
+            var languageId = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSetting.DefaultLanguageId);
+            var session = _httpContextAccessor.HttpContext.Session.GetString(SystemConstants.AppSetting.Token);
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration[SystemConstants.AppSetting.BaseAddress]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", session);
+
+            var requestContent = new MultipartFormDataContent();
+
+            if (request.ThumbnailImage != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ThumbnailImage.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ThumbnailImage.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+
+                requestContent.Add(bytes, "ThumbnailImage", request.ThumbnailImage.FileName);
+            }
+
+
+            requestContent.Add(new StringContent(request.Name.ToString()), "name");
+            requestContent.Add(new StringContent(request.Description.ToString()), "description");
+            requestContent.Add(new StringContent(request.Details.ToString()), "details");
+            requestContent.Add(new StringContent(request.SeoDescription.ToString()), "seoDescription");
+            requestContent.Add(new StringContent(request.SeoTitle.ToString()), "seoTitle");
+            requestContent.Add(new StringContent(request.SeoAlias.ToString()), "seoAlias");
+            requestContent.Add(new StringContent(languageId), "languageId");
+
+            var response = await client.PutAsync($"/api/products/" + request.Id, requestContent);
+
+            return response.IsSuccessStatusCode;
+        }
+
         public async Task<ProductVm> GetById(int id, string languageId)
         {
             var data = await GetAsync<ProductVm>($"/api/products/{id}/{languageId}");
@@ -117,5 +153,7 @@ namespace EShopSolution.ApiIntegration
             return await GetAsync<PagedResult<ProductVm>>("/api/products/paging?pageIndex=" +
                 $"{request.PageIndex}&pageSize={request.PageSize}&keyword={request.KeyWord}&languageId={request.LanguageId}&categoryId={request.CategoryId}");
         }
+
+
     }
 }
